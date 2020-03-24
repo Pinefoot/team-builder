@@ -13,23 +13,24 @@ const initialTeamMembers = [
 function App() {
   const [teamMembers, setTeamMembers] = useState(initialTeamMembers)
   const [formValues, setFormValues] = useState({
-    id: uuid,
+    id: '',
     name: '',
     email: '',
     role: '',
   })
   const onInputChange = event=> {
     const inputChanged = event.target.name
-    const newValueInput = event.target.newValueInput
+    const newValueInput = event.target.value
     setFormValues({
       ...formValues,
+      id: uuid(),
       [inputChanged]: newValueInput,
     })
   }
   const onFormSubmit = event=>{
     event.preventDefault()
     const newTeamMember = {
-      id: uuid(),
+      id: formValues.id,
       name: formValues.name,
       email: formValues.email,
       role: formValues.role,
@@ -48,7 +49,7 @@ function App() {
       />
 
       <h2>The Wonderful Team Members!</h2>
-      {/* {teamMembers.map(tm => <div key={tm.id}> {tm.name} {tm.email} {tm.role} </div>)} */}
+       {teamMembers.map(tm => <div key={tm.id}> {`Name: ${tm.name}`}  {`Role: ${tm.role}`} {`Email: ${tm.email}`} </div>)} 
       {/* might need this ^ for later. */}
     </div>
   );
