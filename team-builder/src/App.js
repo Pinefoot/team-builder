@@ -1,16 +1,22 @@
 import React from 'react';
 import {useState} from 'react';
 import Form from './components/Form';
+import { v4 as uuid } from 'uuid';
 import './App.css';
 
+const initialTeamMembers = [
+  { id: uuid(), name: '', email: '', role: '' },
+  
+]
 
 
 function App() {
-  const [teamMembers, setTeamMembers] = useState([])//may want this to be an open array...
+  const [teamMembers, setTeamMembers] = useState(initialTeamMembers)
   const [formValues, setFormValues] = useState({
+    id: uuid,
     name: '',
     email: '',
-    role: ''
+    role: '',
   })
   const onInputChange = event=> {
     const inputChanged = event.target.name
@@ -23,9 +29,10 @@ function App() {
   const onFormSubmit = event=>{
     event.preventDefault()
     const newTeamMember = {
+      id: uuid(),
       name: formValues.name,
       email: formValues.email,
-      role: formValues.role
+      role: formValues.role,
     }
     setTeamMembers ([...teamMembers, newTeamMember])
   }

@@ -21,9 +21,11 @@ function Form(props){
                 <input 
                 onChange={props.onInputChange}
                 value={props.formValues.role}
-                name='email'
+                name='role'
                 type='text'/>
             </label> <br/>
+            <input type='submit'/>
+
         </form>
     )
 
